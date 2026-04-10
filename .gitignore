@@ -57,3 +57,6 @@ out/
 # Dependency managers
 .npm
 .yarn-integrity
+
+# Local notes
+coder station前台系统笔记.md
