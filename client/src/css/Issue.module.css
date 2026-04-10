@@ -1,0 +1,57 @@
+/* 问答页面样式 */
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    /* padding: 20px 0; */
+    min-height: 800px;
+}
+
+.issueContainer{
+    width: 90%;
+    /* height: 3000px; */
+    margin: 0 auto;
+    /* outline: 1px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    background-color: #fff;
+    min-height: 800px;
+}
+
+.leftSide{
+    width: 65%;
+    height: 100%;
+    /* outline: 1px solid #ccc; */
+}
+
+.rightSide{
+    width: 28%;
+    height: 100%;
+    /* outline: 1px solid #ccc; */
+}
+
+.noIssue{
+    text-align: center;
+    font-weight: 200;
+    font-size: 36px;
+    margin-top: 100px;
+    min-height: 800px;
+}
+
+/* 骨架屏动画效果 */
+@keyframes skeleton-loading {
+    0% {
+        background-color: #e8e8e8;
+    }
+    50% {
+        background-color: #f0f0f0;
+    }
+    100% {
+        background-color: #e8e8e8;
+    }
+}
+
+.skeleton-shimmer {
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+}
