@@ -10,7 +10,7 @@ import {
 	message,
 } from "antd";
 import styles from "../css/LoginForm.module.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
 	getCaptcha,
 	userIsExist,
@@ -40,6 +40,11 @@ function LoginForm(props) {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
+    if (props.isShow) {
+    // 每次打开时重置表单（双重保险）
+    setLoginInfo({ loginId: "", loginPwd: "", captcha: "", remember: false });
+    setRegisterInfo({ registerId: "", nickname: "", captcha: "" });
+  }
 		captchaClickHandle();
 	}, [props.isShow]);
 
@@ -172,7 +177,7 @@ function LoginForm(props) {
 		container = (
 			<div className={styles.container}>
 				<Form
-					name="basic1"
+          key="login-form"
 					autoComplete="off"
 					onFinish={loginHandle}>
 					<Form.Item
@@ -192,6 +197,7 @@ function LoginForm(props) {
 							onChange={(e) =>
 								updateInfo(loginInfo, e.target.value, "loginId", setLoginInfo)
 							}
+              autoComplete="off"
 						/>
 					</Form.Item>
 
@@ -210,6 +216,7 @@ function LoginForm(props) {
 							onChange={(e) =>
 								updateInfo(loginInfo, e.target.value, "loginPwd", setLoginInfo)
 							}
+              autoComplete="off"
 						/>
 					</Form.Item>
 
@@ -236,6 +243,7 @@ function LoginForm(props) {
 											setLoginInfo,
 										)
 									}
+                  autoComplete="off"
 								/>
 							</Col>
 							<Col span={6}>
@@ -295,7 +303,7 @@ function LoginForm(props) {
 		container = (
 			<div className={styles.container}>
 				<Form
-					name="basic2"
+          key="register-form"
 					autoComplete="off"
 					onFinish={registerHandle}>
 					<Form.Item
@@ -321,6 +329,7 @@ function LoginForm(props) {
 									setRegisterInfo,
 								)
 							}
+              autoComplete="off"
 						/>
 					</Form.Item>
 
@@ -336,6 +345,7 @@ function LoginForm(props) {
 									setRegisterInfo,
 								)
 							}
+              autoComplete="off"
 						/>
 					</Form.Item>
 
@@ -361,6 +371,7 @@ function LoginForm(props) {
 											setRegisterInfo,
 										)
 									}
+                  autoComplete="off"
 								/>
 							</Col>
 							<Col span={6}>
@@ -410,13 +421,13 @@ function LoginForm(props) {
 						remember: false,
 					});
 					setRegisterInfo({
-						loginId: "",
+						registerId: "",
 						nickname: "",
-						loginPwd: "",
 						captcha: "",
-						remember: false,
 					});
-					props.closeModal();
+          setTimeout(() => {
+            props.closeModal();
+          }, 0);
 				}}
 				footer={null}>
 				<Radio.Group
