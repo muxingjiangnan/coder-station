@@ -86,7 +86,7 @@ function LoginForm(props) {
 			nickname: "",
 			captcha: "",
 		});
-		// props.closeModal();
+		props.closeModal();
 	}
 
 	async function loginHandle() {
