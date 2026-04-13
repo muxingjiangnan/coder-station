@@ -96,3 +96,37 @@ export function typeOptionCreator(Select, typeList) {
 	}
 	return optionContainer;
 }
+
+/**
+ * 密码强度验证规则
+ * 要求：至少包含大小写字母、数字和特殊字符，长度8-20位
+ */
+export const passwordValidator = {
+    validator: (_, value) => {
+        if (!value) return Promise.resolve();
+        
+        const errors = [];
+        
+        if (value.length < 8 || value.length > 20) {
+            errors.push("密码长度必须在8-20位之间");
+        }
+        if (!/[a-z]/.test(value)) {
+            errors.push("密码必须包含小写字母");
+        }
+        if (!/[A-Z]/.test(value)) {
+            errors.push("密码必须包含大写字母");
+        }
+        if (!/\d/.test(value)) {
+            errors.push("密码必须包含数字");
+        }
+        if (!/[^A-Za-z0-9]/.test(value)) {
+            errors.push("密码必须包含特殊字符");
+        }
+        
+        if (errors.length > 0) {
+            return Promise.reject(errors.join("，"));
+        }
+        
+        return Promise.resolve();
+    }
+};

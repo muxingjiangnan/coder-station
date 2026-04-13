@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PageHeader from "../components/PageHeader";
 import styles from "../css/Personal.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Card, Image, Upload, Modal, Form, Input, Button, message } from "antd";
 import PersonalInfoItem from "../components/PersonalInfoItem";
-import { formatDate } from "../utils/tool";
+import { formatDate, passwordValidator } from "../utils/tool";
 import { PlusOutlined } from "@ant-design/icons";
 import { updataUserInfoAsync } from "../redux/userSlice";
 import { checkPassword } from "../api/user";
@@ -86,7 +86,7 @@ function Personal() {
 				passwordInfo.oldpassword,
 			);
 			if (!data) {
-				return Promise.reject("密码不正确 请重新输入密码");
+				return Promise.reject("密码不一致 请重新输入");
 			}
 		}
 	}
@@ -125,7 +125,17 @@ function Personal() {
 						</Form.Item>
 
 						{/* 新的登录密码 */}
-						<Form.Item label="新密码" name="newpassword">
+						<Form.Item
+							label="新密码"
+							name="newpassword"
+							rules={[
+								{
+									required: true,
+									message: "请输入新密码",
+								},
+								passwordValidator,
+							]}
+							validateTrigger="onBlur">
 							<Input.Password
 								rows={6}
 								value={passwordInfo.newpassword}

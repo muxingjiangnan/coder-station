@@ -191,7 +191,7 @@ function LoginForm(props) {
 							{ vallidator: checkLoginIdIsExist },
 						]}>
 						<Input
-							placeholder="请输入你的登录账号"
+							placeholder="请输入账号"
 							value={loginInfo.loginId}
 							onChange={(e) =>
 								updateInfo(loginInfo, e.target.value, "loginId", setLoginInfo)
@@ -211,7 +211,7 @@ function LoginForm(props) {
 							},
 						]}>
 						<Input.Password
-							placeholder="请输入你的登录密码，新用户默认为123456"
+							placeholder="请输入密码"
 							value={loginInfo.loginPwd}
 							onChange={(e) =>
 								updateInfo(loginInfo, e.target.value, "loginPwd", setLoginInfo)
@@ -305,6 +305,7 @@ function LoginForm(props) {
 		container = (
 			<div className={styles.container}>
 				<Form key="register-form" autoComplete="off" onFinish={registerHandle}>
+					{/* 登录账号 */}
 					<Form.Item
 						label="登录账号"
 						name="loginId"
@@ -332,9 +333,10 @@ function LoginForm(props) {
 						/>
 					</Form.Item>
 
+					{/* 用户昵称 */}
 					<Form.Item label="用户昵称" name="nickname">
 						<Input
-							placeholder="请输入昵称，不填写默认为新用户xxx"
+							placeholder="请输入昵称(非必填项)"
 							value={registerInfo.nickname}
 							onChange={(e) =>
 								updateInfo(
@@ -348,6 +350,7 @@ function LoginForm(props) {
 						/>
 					</Form.Item>
 
+					{/* 验证码 */}
 					<Form.Item
 						name="registercaptcha"
 						label="验证码"
@@ -356,7 +359,8 @@ function LoginForm(props) {
 								required: true,
 								message: "请输入验证码",
 							},
-						]}>
+						]}
+						validateTrigger="onBlur">
 						<Row align="middle">
 							<Col span={16}>
 								<Input
@@ -382,6 +386,7 @@ function LoginForm(props) {
 						</Row>
 					</Form.Item>
 
+					{/* 注册/重置按钮 */}
 					<Form.Item
 						wrapperCol={{
 							offset: 5,
