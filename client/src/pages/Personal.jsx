@@ -317,12 +317,6 @@ function Personal() {
 								itemValue: formatDate(userInfo?.registerDate),
 							}}
 						/>
-						<PersonalInfoItem
-							info={{
-								itemName: "上次登录时间",
-								itemValue: formatDate(userInfo?.lastLoginDate),
-							}}
-						/>
 						<div style={{ fontWeight: "100", height: "50px" }}>当前头像</div>
 						<Image src={userInfo?.avatar} width={100} />
 						<div style={{ fontWeight: "100", height: "50px" }}>上传新头像</div>

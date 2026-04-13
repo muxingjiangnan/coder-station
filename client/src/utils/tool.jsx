@@ -1,7 +1,8 @@
 /**
  * 格式化时间戳
- * @param {*} timestamp
- * @returns
+ * @param {*} timestamp 时间戳
+ * @param {*} part 格式化部分
+ * @returns 格式化后的时间字符串
  */
 export function formatDate(timestamp, part) {
 	if (!timestamp) {
