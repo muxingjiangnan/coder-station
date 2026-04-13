@@ -7,6 +7,7 @@ import PersonalInfoItem from "../components/PersonalInfoItem";
 import { formatDate, passwordValidator } from "../utils/tool";
 import { updataUserInfoAsync } from "../redux/userSlice";
 import { checkPassword } from "../api/user";
+import notFoundImg from "../assets/images/NotFound.png";
 
 /**
  * 个人中心
@@ -282,7 +283,12 @@ function Personal() {
 		}
 	}
 
-	return (
+	return !userInfo || Object.keys(userInfo).length === 0 ? (
+		<div className={styles.emptyInfo}>
+			<img src={notFoundImg} alt="信息为空" className={styles.emptyImg} />
+			<p>暂无个人信息</p>
+		</div>
+	) : (
 		<div>
 			<PageHeader title="个人中心" />
 			{/* 信息展示 */}

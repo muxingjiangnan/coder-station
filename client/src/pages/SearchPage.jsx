@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import PageHeader from "../components/PageHeader";
-
+import notFoundImg from "../assets/images/NotFound.png";
 import AddIssueBtn from "../components/AddIssueBtn";
 import Recommend from "../components/Recommend";
 import ScoreRank from "../components/ScoreRank";
@@ -13,9 +13,8 @@ import styles from "../css/SearchPage.module.css";
  * @param {*} props
  * @returns
  */
-function SearchPage(props) {
+function SearchPage() {
 	const location = useLocation();
-
 	// 搜索结果
 	const [searchResult, setSearchResult] = useState([]);
 	const [pageInfo, setPageInfo] = useState({
@@ -65,9 +64,20 @@ function SearchPage(props) {
 			<div className={styles.searchPageContainer}>
 				{/* 左边部分 */}
 				<div className={styles.leftSide}>
-					{searchResult.map((item) => {
-						return <SearchResultItem info={item} key={item._id} />;
-					})}
+					{searchResult.length === 0 ? (
+						<div className={styles.emptyResult}>
+							<img
+								src={notFoundImg}
+								alt="搜索结果为空"
+								className={styles.emptyImg}
+							/>
+							<p>未找到相关内容</p>
+						</div>
+					) : (
+						searchResult.map((item) => {
+							return <SearchResultItem info={item} key={item._id} />;
+						})
+					)}
 				</div>
 				{/* 右边部分 */}
 				<div className={styles.rightSide}>
