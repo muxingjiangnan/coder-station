@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Card, Image, Upload, Modal, Form, Input, Button, message } from "antd";
 import PersonalInfoItem from "../components/PersonalInfoItem";
 import { formatDate, passwordValidator } from "../utils/tool";
-import { PlusOutlined } from "@ant-design/icons";
 import { updataUserInfoAsync } from "../redux/userSlice";
 import { checkPassword } from "../api/user";
 
@@ -46,7 +45,7 @@ function Personal() {
 		setEditInfo({});
 	};
 
-	const handleOk = (e) => {
+	const handleOk = () => {
 		setIsModalOpen(false);
 		dispatch(
 			updataUserInfoAsync({
@@ -57,7 +56,7 @@ function Personal() {
 		message.success("修改成功!");
 	};
 
-	const handleCancel = (e) => {
+	const handleCancel = () => {
 		setIsModalOpen(false);
 	};
 
@@ -331,7 +330,7 @@ function Personal() {
 									handleAvatar(url, "avatar");
 								}
 							}}>
-							<PlusOutlined />
+							<i className="iconfont icon-xiangyou">&#xe60f;</i>
 						</Upload>
 					</Card>
 				</div>
