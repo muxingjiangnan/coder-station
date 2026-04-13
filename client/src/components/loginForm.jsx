@@ -71,12 +71,29 @@ function LoginForm(props) {
 		}
 	}
 
+	
+
+	function handleCancel() {
+		// 重置表单
+		setLoginInfo({
+			loginId: "",
+			loginPwd: "",
+			captcha: "",
+			remember: false,
+		});
+		setRegisterInfo({
+			registerId: "",
+			nickname: "",
+			captcha: "",
+		});
+		// props.closeModal();
+	}
+
 	async function loginHandle() {
 		const result = await userLogin(loginInfo);
 		if (result.data) {
 			// 说明验证码正确
 			// 接下来会有这几种情况：1、账号或密码错误 2、用户被禁止使用 3、账号正常
-
 			const datas = result.data;
 			if (!datas.data) {
 				message.warning("账号或密码错误");
@@ -101,30 +118,12 @@ function LoginForm(props) {
 			message.warning(result.msg);
 		}
 	}
-
-	function handleCancel() {
-		// 重置表单
-		setLoginInfo({
-			loginId: "",
-			loginPwd: "",
-			captcha: "",
-			remember: false,
-		});
-		setRegisterInfo({
-			registerId: "",
-			nickname: "",
-			captcha: "",
-		});
-		props.closeModal();
-	}
-
 	async function registerHandle() {
 		// 去看registerHandle调用的地方，是注册表单提交成功后调用的，所以表单数据一定是合法的
 		const result = await addUser(registerInfo);
 		if (result.data) {
 			message.success("用户注册成功，默认密码为123456");
 			// 将用户信息存入redux
-
 			dispatch(initUserInfo(result.data));
 			dispatch(changeLoginState(true));
 			handleCancel();
@@ -134,7 +133,6 @@ function LoginForm(props) {
 		}
 	}
 	/**
-	 *
 	 * @param {Object} oldInfo 之前的状态
 	 * @param {*} newContent 修改的内容
 	 * @param {*} key 对应键名
@@ -418,20 +416,7 @@ function LoginForm(props) {
 				title="注册/登录"
 				open={props.isShow}
 				onCancel={() => {
-					setLoginInfo({
-						loginId: "",
-						loginPwd: "",
-						captcha: "",
-						remember: false,
-					});
-					setRegisterInfo({
-						registerId: "",
-						nickname: "",
-						captcha: "",
-					});
-					setTimeout(() => {
-						props.closeModal();
-					}, 100);
+					handleCancel()
 				}}
 				footer={null}>
 				<Radio.Group
