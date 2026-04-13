@@ -7,7 +7,7 @@ import PersonalInfoItem from "../components/PersonalInfoItem";
 import { formatDate, passwordValidator } from "../utils/tool";
 import { updataUserInfoAsync } from "../redux/userSlice";
 import { checkPassword } from "../api/user";
-import notFoundImg from "../assets/images/NotFound.png";
+import notFoundImg from "../img/not_found.png";
 
 /**
  * 个人中心

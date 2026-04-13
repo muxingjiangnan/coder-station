@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import PageHeader from "../components/PageHeader";
-import notFoundImg from "../assets/images/NotFound.png";
+import notFoundImg from "../img/not_found.png";
 import AddIssueBtn from "../components/AddIssueBtn";
 import Recommend from "../components/Recommend";
 import ScoreRank from "../components/ScoreRank";
