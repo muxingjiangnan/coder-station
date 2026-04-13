@@ -40,11 +40,11 @@ function LoginForm(props) {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-    if (props.isShow) {
-    // 每次打开时重置表单（双重保险）
-    setLoginInfo({ loginId: "", loginPwd: "", captcha: "", remember: false });
-    setRegisterInfo({ registerId: "", nickname: "", captcha: "" });
-  }
+		if (props.isShow) {
+			// 每次打开时重置表单（双重保险）
+			setLoginInfo({ loginId: "", loginPwd: "", captcha: "", remember: false });
+			setRegisterInfo({ registerId: "", nickname: "", captcha: "" });
+		}
 		captchaClickHandle();
 	}, [props.isShow]);
 
@@ -103,7 +103,6 @@ function LoginForm(props) {
 	}
 
 	function handleCancel() {
-		props.closeModal();
 		// 重置表单
 		setLoginInfo({
 			loginId: "",
@@ -116,6 +115,7 @@ function LoginForm(props) {
 			nickname: "",
 			captcha: "",
 		});
+		props.closeModal();
 	}
 
 	async function registerHandle() {
@@ -176,10 +176,9 @@ function LoginForm(props) {
 		//登录面板jsx
 		container = (
 			<div className={styles.container}>
-				<Form
-          key="login-form"
-					autoComplete="off"
-					onFinish={loginHandle}>
+				<Form key="login-form" autoComplete="off" onFinish={loginHandle}>
+
+					{/* 登录账号 */}
 					<Form.Item
 						label="登录账号"
 						name="loginId"
@@ -197,10 +196,11 @@ function LoginForm(props) {
 							onChange={(e) =>
 								updateInfo(loginInfo, e.target.value, "loginId", setLoginInfo)
 							}
-              autoComplete="off"
+							autoComplete="off"
 						/>
 					</Form.Item>
 
+					{/* 登录密码 */}
 					<Form.Item
 						label="登录密码"
 						name="loginPwd"
@@ -216,7 +216,7 @@ function LoginForm(props) {
 							onChange={(e) =>
 								updateInfo(loginInfo, e.target.value, "loginPwd", setLoginInfo)
 							}
-              autoComplete="off"
+							autoComplete="off"
 						/>
 					</Form.Item>
 
@@ -243,7 +243,7 @@ function LoginForm(props) {
 											setLoginInfo,
 										)
 									}
-                  autoComplete="off"
+									autoComplete="off"
 								/>
 							</Col>
 							<Col span={6}>
@@ -255,6 +255,7 @@ function LoginForm(props) {
 						</Row>
 					</Form.Item>
 
+					{/* 记住我 */}
 					<Form.Item
 						name="remember"
 						wrapperCol={{
@@ -275,6 +276,7 @@ function LoginForm(props) {
 						</Checkbox>
 					</Form.Item>
 
+					{/* 登录/重置按钮 */}
 					<Form.Item
 						wrapperCol={{
 							offset: 5,
@@ -302,10 +304,7 @@ function LoginForm(props) {
 		//注册面板jsx
 		container = (
 			<div className={styles.container}>
-				<Form
-          key="register-form"
-					autoComplete="off"
-					onFinish={registerHandle}>
+				<Form key="register-form" autoComplete="off" onFinish={registerHandle}>
 					<Form.Item
 						label="登录账号"
 						name="loginId"
@@ -329,7 +328,7 @@ function LoginForm(props) {
 									setRegisterInfo,
 								)
 							}
-              autoComplete="off"
+							autoComplete="off"
 						/>
 					</Form.Item>
 
@@ -345,7 +344,7 @@ function LoginForm(props) {
 									setRegisterInfo,
 								)
 							}
-              autoComplete="off"
+							autoComplete="off"
 						/>
 					</Form.Item>
 
@@ -371,7 +370,7 @@ function LoginForm(props) {
 											setRegisterInfo,
 										)
 									}
-                  autoComplete="off"
+									autoComplete="off"
 								/>
 							</Col>
 							<Col span={6}>
@@ -425,9 +424,9 @@ function LoginForm(props) {
 						nickname: "",
 						captcha: "",
 					});
-          setTimeout(() => {
-            props.closeModal();
-          }, 0);
+					setTimeout(() => {
+						props.closeModal();
+					}, 100);
 				}}
 				footer={null}>
 				<Radio.Group
