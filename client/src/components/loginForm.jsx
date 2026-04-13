@@ -40,11 +40,6 @@ function LoginForm(props) {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (props.isShow) {
-			// 每次打开时重置表单（双重保险）
-			setLoginInfo({ loginId: "", loginPwd: "", captcha: "", remember: false });
-			setRegisterInfo({ registerId: "", nickname: "", captcha: "" });
-		}
 		captchaClickHandle();
 	}, [props.isShow]);
 
@@ -70,8 +65,6 @@ function LoginForm(props) {
 			}
 		}
 	}
-
-	
 
 	function handleCancel() {
 		// 重置表单
