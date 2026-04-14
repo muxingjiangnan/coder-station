@@ -1,13 +1,13 @@
-import Access from '@/access';
 import UserController from '@/services/user';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { useAccess, useNavigate } from '@umijs/max';
+import { Access, useAccess, useDispatch, useNavigate } from '@umijs/max';
 import { Button, Popconfirm, Switch, message } from 'antd';
 import { useRef, useState } from 'react';
 
 function User(props) {
   const navigate = useNavigate();
   const access = useAccess();
+  const dispatch = useDispatch();
   const tableRef = useRef();
 
   // 首先需要维护一组分页相关的数据
