@@ -1,0 +1,193 @@
+/* ============================================
+   代码块高亮样式 - Highlight.js深色主题
+   ============================================ */
+
+/* 代码块容器 */
+.markdown pre,
+.markdown pre[class*="language-"],
+pre[class*="language-"] {
+  position: relative;
+  background: #0f172a !important;
+  border: 1px solid #334155;
+  border-radius: 18px;
+  padding: 28px 20px 20px;
+  margin: 24px 0;
+  overflow: auto;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+}
+
+.markdown pre code {
+  background: transparent !important;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+}
+
+.markdown code[class*="language-"],
+pre[class*="language-"] code {
+  background: transparent !important;
+  padding: 0;
+}
+
+pre[class*="language-"]::before,
+.markdown pre[class*="language-"]::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #e2e8f0;
+  background: rgba(148, 163, 184, 0.14);
+  border-radius: 999px;
+  padding: 0.22em 0.55em;
+  pointer-events: none;
+}
+
+/* 代码块选中效果 */
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
+  text-shadow: none;
+  background: rgba(15, 23, 42, 0.95);
+}
+
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
+  text-shadow: none;
+  background: rgba(15, 23, 42, 0.95);
+}
+
+/* ============================================
+   Highlight.js 语法高亮颜色定义
+   ============================================ */
+
+.hljs {
+  display: block;
+  background: transparent;
+  color: #e2e8f0;
+  overflow-x: auto;
+}
+
+/* 注释 */
+.hljs-comment,
+.hljs-quote {
+  color: #94a3b8;
+}
+
+/* 关键字、函数名、标题 */
+.hljs-keyword,
+.hljs-section,
+.hljs-title,
+.hljs-function,
+.hljs-selector-tag,
+.hljs-attr {
+  color: #f472b6;
+}
+
+/* 字符串、符号、添加的内容 */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #86efac;
+}
+
+/* 数字、变量、参数等 */
+.hljs-number,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta {
+  color: #7dd3fc;
+}
+
+/* 属性和伪类 */
+.hljs-attr,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #fde047;
+}
+
+/* 删除内容 */
+.hljs-deletion {
+  color: #f87171;
+  background-color: rgba(248, 113, 113, 0.1);
+}
+
+/* 强调样式 */
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: 700;
+}
+
+/* ============================================
+   行内代码样式
+   ============================================ */
+
+/* 行内代码（不在pre标签中）*/
+code:not([class*="language-"]):not([class*="hljs"]) {
+  background: #f3f4f6;
+  color: #1f2937;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+  font-size: 0.95em;
+  margin: 0 2px;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+/* 打印样式 */
+@media print {
+  pre[class*="language-"] {
+    background: #fff !important;
+    color: #000 !important;
+    border: 1px solid #ddd !important;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: #666;
+  }
+
+  .hljs-keyword,
+  .hljs-section,
+  .hljs-title,
+  .hljs-function {
+    color: #000;
+    font-weight: bold;
+  }
+
+  .hljs-string,
+  .hljs-symbol,
+  .hljs-bullet {
+    color: #008000;
+  }
+
+  .hljs-number,
+  .hljs-variable,
+  .hljs-template-variable {
+    color: #008;
+  }
+}

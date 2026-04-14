@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getIntervieTitleAsync } from "../redux/interviewSlice";
 import { getTypeList } from "../redux/typeSlice";
+import { highlightAllCode } from "../utils/highlight";
 import styles from "../css/Interview.module.css";
 import PageHearder from "../components/PageHeader";
 import { Tree ,BackTop} from "antd";
@@ -57,6 +58,12 @@ function Interviews() {
 		}
 	}, [typeList, interviewTitleList]);
 
+	useEffect(() => {
+		if (interviewInfo) {
+			highlightAllCode();
+		}
+	}, [interviewInfo]);
+
 	function clickHandle(interviewId) {
 		async function fetchData() {
 			const { data } = await getInterviewById(interviewId);
@@ -71,7 +78,7 @@ function Interviews() {
             <div className={styles.content}>
                 <h1 className={styles.interviewRightTitle}>{interviewInfo?.interviewTitle}</h1>
                 <div className={styles.contentContainer}>
-                    <div dangerouslySetInnerHTML={{__html:interviewInfo?.interviewContent}}></div>
+                    <div className={styles.markdown} dangerouslySetInnerHTML={{__html:interviewInfo?.interviewContent}}></div>
                 </div>
             </div>
         )

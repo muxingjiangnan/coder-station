@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { getIssueById } from "../api/issue";
 import { useEffect, useState } from "react";
+import { highlightAllCode } from "../utils/highlight";
 import styles from "../css/IssueDetail.module.css";
 import { PageHeader, Avatar } from "antd";
 import Recommend from "../components/Recommend";
@@ -26,6 +27,13 @@ function IssueDetail(props) {
 		}
 		fetchData();
 	}, []);
+
+	useEffect(() => {
+		if (issueDetail) {
+			highlightAllCode();
+		}
+	}, [issueDetail]);
+
 	return (
 		<div className={styles.container}>
 			<PageHeader title="问题详情" />

@@ -2,6 +2,7 @@ import PageHeader from "../components/PageHeader";
 import Discuss from "../components/Discuss";
 import { Image, message, Modal } from "antd";
 import { useEffect, useState } from "react";
+import { highlightAllCode } from "../utils/highlight";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updataUserInfo } from "../redux/userSlice";
@@ -31,6 +32,12 @@ function BookDetail() {
 		}
 		fetchData();
 	}, []);
+
+	useEffect(() => {
+		if (bookInfo) {
+			highlightAllCode();
+		}
+	}, [bookInfo]);
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
 

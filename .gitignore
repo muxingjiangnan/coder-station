@@ -45,8 +45,8 @@ lerna-debug.log*
 Thumbs.db
 
 # Umi.js generated files
-background-system/.umi/
-background-system/.umi-production/
+background-system/**/.umi/
+background-system/**/.umi-production/
 
 # Build tools
 .cache/
@@ -57,10 +57,7 @@ out/
 # Dependency managers
 .npm
 .yarn-integrity
-
 # Local notes
 coder station前台系统笔记.md
 .agent.md
-.umi
-.umi-production
 pnpm-lock.yaml

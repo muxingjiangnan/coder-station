@@ -18,6 +18,7 @@ import { getIssueCommentById } from "../api/comment";
 import { getUserById } from "../api/user";
 import { formatDate } from "../utils/tool";
 import { addCommet ,getBookCommentById} from "../api/comment";
+import { highlightAllCode } from "../utils/highlight";
 import { updataIssue } from "../api/issue";
 import { updataUserInfoAsync } from "../redux/userSlice";
 import styles from "../css/Discuss.module.css";
@@ -68,6 +69,12 @@ function Discuss(props) {
 		}
 		if (props.targetId) fetchCommentList();
 	}, [props.targetId, Refresh, props.issueInfo?.commentNumber]);
+
+	useEffect(() => {
+		if (commentList?.length) {
+			highlightAllCode();
+		}
+	}, [commentList]);
 
 	/**
 	 * 添加评论的回调函数
