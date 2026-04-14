@@ -2,7 +2,7 @@ import PageHeader from "../components/PageHeader";
 import styles from "../css/Issue.module.css";
 import { getIssueByPage } from "../api/issue";
 import { useState, useEffect } from "react";
-import { Pagination, Skeleton } from "antd";
+import { Pagination } from "antd";
 import IssueItem from "../components/IssueItem";
 import AddIssueBtn from "../components/AddIssueBtn";
 import Recommend from "../components/Recommend";

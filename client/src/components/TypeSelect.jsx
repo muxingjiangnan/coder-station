@@ -24,6 +24,24 @@ function TypeSelect() {
 		"purple",
 	];
 
+	/**
+	 * 分类选择
+	 * @param {*} typeId 分类id
+	 */
+	function changeType(typeId){
+		// 更新仓库对应的 issueTypeId 或者 bookTypeId 
+        // if(typeId==="all") {
+
+        //     return;
+        // }
+        if(location.pathname==="/issues"){
+			dispatch(updataIssueTypeById(typeId));
+        }
+        if(location.pathname==='/books'){
+            dispatch(updataBookTypeById(typeId));
+        }
+    }
+
 	useEffect(() => {
 		if (!typeList.length) {
 			dispatch(getTypeList());
@@ -60,21 +78,6 @@ function TypeSelect() {
 			setTagContainer(arr);
 		}
 	}, [typeList]);
-
-    function changeType(typeId){
-		// 更新仓库对应的 issueTypeId 或者 bookTypeId 
-        // if(typeId==="all") {
-
-        //     return;
-        // }
-        if(location.pathname==="/issues"){
-			dispatch(updataIssueTypeById(typeId));
-        }
-        if(location.pathname==='/books'){
-            dispatch(updataBookTypeById(typeId));
-        }
-    }
-
 
 	return <div>{tagContainer}</div>;
 }
