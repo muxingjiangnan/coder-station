@@ -53,31 +53,31 @@ export function formatDate(timestamp, part) {
 		seconds = "0" + seconds;
 	}
 
-	var str = "";
+	let result = "";
 
 	switch (part) {
 		case "year": {
-			str = `${year}-${month}-${day}`;
+			result = `${year}-${month}-${day}`;
 			break;
 		}
 		case "time": {
-			str = `${hour}:${minutes}:${seconds} `;
+			result = `${hour}:${minutes}:${seconds} `;
 			break;
 		}
 		case "year-time": {
-			str = `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
+			result = `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
 			break;
 		}
 		case "time-week": {
-			str = `${hour}:${minutes}:${seconds} ${weekday}`;
+			result = `${hour}:${minutes}:${seconds} ${weekday}`;
 			break;
 		}
 		default: {
-			str = `${year}-${month}-${day} ${hour}:${minutes}:${seconds} ${weekday}`;
+			result = `${year}-${month}-${day} ${hour}:${minutes}:${seconds} ${weekday}`;
 		}
 	}
 
-	return str;
+	return result;
 }
 
 /**
