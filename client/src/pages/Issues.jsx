@@ -45,7 +45,7 @@ function Issues() {
 					searchParams.typeId = issueTypeId;
 
 					// 需要将当前页重置为 1 ，因为：如果用户点击到了数据的最后一页，再来点击分类，
-					// 此时 getIssueByPage 中的参数 current 为当前页，所以有可能取不到数据.
+					// 此时 getIssueByPage 中的参数 current 为当前页，有可能取不到数据.
 					searchParams.current = 1;
 				}
 
