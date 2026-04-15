@@ -27,7 +27,7 @@ export function formatDate(timestamp, part) {
 		"星期五",
 		"星期六",
 	];
-	let week = weekArr[date.getDay()];
+	let weekday = weekArr[date.getDay()];
 
 	// 需要给一位数前面加 0
 	// 9 点 ----> 09:45:03
@@ -69,11 +69,11 @@ export function formatDate(timestamp, part) {
 			break;
 		}
 		case "time-week": {
-			str = `${hour}:${minutes}:${seconds} ${week}`;
+			str = `${hour}:${minutes}:${seconds} ${weekday}`;
 			break;
 		}
 		default: {
-			str = `${year}-${month}-${day} ${hour}:${minutes}:${seconds} ${week}`;
+			str = `${year}-${month}-${day} ${hour}:${minutes}:${seconds} ${weekday}`;
 		}
 	}
 
