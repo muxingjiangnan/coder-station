@@ -2,42 +2,42 @@ function PageFooter() {
 	return (
 		<div>
 			<p className="links">
-				<span className="linkItem">友情链接：</span>
+				<span className="linkItem">友情链接: </span>
 				<a
-					href="https://duyi.ke.qq.com/"
+					href="https://segmentfault.com/"
 					target="_blank"
 					rel="noreferrer"
 					className="linkItem"
 				>
-					渡一教育-腾讯课堂
+					SegmentFault 思否
 				</a>
 				<a
-					href="http://www.yuanjin.tech/"
+					href="https://juejin.cn/"
 					target="_blank"
 					rel="noreferrer"
 					className="linkItem"
 				>
-					袁进的博客
+					掘金社区
 				</a>
 				<a
-					href="http://yanhongzhi.com/"
+					href="https://www.nowcoder.com/"
 					target="_blank"
 					rel="noreferrer"
 					className="linkItem"
 				>
-					Mr.Yan
+					牛客网
 				</a>
 				<a
-					href="https://blog.csdn.net/jackfrued"
+					href="https://www.ruanyifeng.com/blog/"
 					target="_blank"
 					rel="noreferrer"
 					className="linkItem"
 				>
-					骆昊的技术专栏
+					阮一峰的日志
 				</a>
 			</p>
-			<p>© 2022 - Coder Station</p>
-			<p>Powered by Create React App</p>
+			<p>© 2026 - Coder Station</p>
+			<p>Powered by Vite</p>
 		</div>
 	);
 }
