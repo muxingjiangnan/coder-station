@@ -8,15 +8,24 @@ export function formatDate(timestamp, part) {
 	if (!timestamp) {
 		return;
 	}
+
+	/**
+	 * 补全器(不足两位的数字前面补零)
+	 * @param {*} num 处理的数字
+	 * @returns 
+	 */
+	function _padZero(num) {
+		return num < 10 ? '0' + num : num;
+	}
 	let date = new Date(parseInt(timestamp));
 
 	let year = date.getFullYear(); // 年
-	let month = date.getMonth() + 1; // 月
-	let day = date.getDate(); // 日
+	let month = _padZero(date.getMonth() + 1); // 月
+	let day = _padZero(date.getDate()); // 日
 
-	let hour = date.getHours(); // 时
-	let minutes = date.getMinutes(); // 分
-	let seconds = date.getSeconds(); // 秒
+	let hour = _padZero(date.getHours()); // 时
+	let minutes = _padZero(date.getMinutes()); // 分
+	let seconds = _padZero(date.getSeconds()); // 秒
 
 	let weekArr = [
 		"星期日",
@@ -28,30 +37,6 @@ export function formatDate(timestamp, part) {
 		"星期六",
 	];
 	let weekday = weekArr[date.getDay()];
-
-	// 需要给一位数前面加 0
-	// 9 点 ----> 09:45:03
-
-	if (month >= 1 && month <= 9) {
-		// month += '0'; // a += b ----> a = a + b
-		month = "0" + month;
-	}
-
-	if (day >= 0 && day <= 9) {
-		day = "0" + day;
-	}
-
-	if (hour >= 0 && hour <= 9) {
-		hour = "0" + hour;
-	}
-
-	if (minutes >= 0 && minutes <= 9) {
-		minutes = "0" + minutes;
-	}
-
-	if (seconds >= 0 && seconds <= 9) {
-		seconds = "0" + seconds;
-	}
 
 	let result = "";
 
