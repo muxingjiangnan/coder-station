@@ -15,7 +15,11 @@ import "./index.css"
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<Provider store={store}>
-		<BrowserRouter>
+		<BrowserRouter
+			future={{
+				v7_startTransition: true,    // 开启v7的startTransition特性
+				v7_relativeSplatPath: true   // 开启v7的通配符路径解析规则
+			}}>
 			<ConfigProvider locale={zhCN}>
 				<App />
 			</ConfigProvider>
