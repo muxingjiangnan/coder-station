@@ -1,13 +1,45 @@
-import React from "react";
-import { Card,Carousel } from "antd";
-import RecommendItem from './RecommendItem'
-import styles from '../css/Recommend.module.css'
+import { useEffect, useState } from "react";
+import { Card, Carousel } from "antd";
+import RecommendItem from "./RecommendItem";
+import { getRecommendList } from "../api/recommend";
+import styles from "../css/Recommend.module.css";
 
 /**
  * 推荐内容
- * @returns 
+ * @returns
  */
 function Recommend() {
+	const [recommendList, setRecommendList] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [errorMessage, setErrorMessage] = useState("");
+
+	useEffect(() => {
+		let mounted = true;
+
+		getRecommendList()
+			.then((data) => {
+				if (!mounted) {
+					return;
+				}
+				setRecommendList(Array.isArray(data) ? data : []);
+			})
+			.catch(() => {
+				if (!mounted) {
+					return;
+				}
+				setErrorMessage("推荐内容加载失败，请稍后重试。");
+			})
+			.finally(() => {
+				if (mounted) {
+					setLoading(false);
+				}
+			});
+
+		return () => {
+			mounted = false;
+		};
+	}, []);
+
 	return (
 		<div>
 			<Card title="推荐内容">
@@ -59,34 +91,20 @@ function Recommend() {
 						</div>
 					</Carousel>
 				</div>
-				<RecommendItem
-					recommendInfo={{
-						num: 1,
-						title: "利用思否猫素材实现一个丝滑的轮播图（html + css + js）",
-						href: "https://segmentfault.com/a/1190000042661646",
-					}}
-				/>
-				<RecommendItem
-					recommendInfo={{
-						num: 2,
-						title: "「🌟技术探索🌟」借助 CI / CD 实现前端应用的快速回滚",
-						href: "https://segmentfault.com/a/1190000042531062",
-					}}
-				/>
-				<RecommendItem
-					recommendInfo={{
-						num: 3,
-						title: "面试说：聊聊JavaScript中的数据类型",
-						href: "https://segmentfault.com/a/1190000042539876",
-					}}
-				/>
-				<RecommendItem
-					recommendInfo={{
-						num: 4,
-						title: "单标签实现复杂的棋盘布局",
-						href: "https://segmentfault.com/a/1190000042513947",
-					}}
-				/>
+				{loading ? (
+					<div style={{ padding: 16, color: "#999" }}>加载中...</div>
+				) : errorMessage ? (
+					<div style={{ padding: 16, color: "#f00" }}>{errorMessage}</div>
+				) : recommendList.length > 0 ? (
+					recommendList.map((recommendInfo) => (
+						<RecommendItem
+							key={recommendInfo.href}
+							recommendInfo={recommendInfo}
+						/>
+					))
+				) : (
+					<div style={{ padding: 16, color: "#999" }}>暂无推荐内容。</div>
+				)}
 			</Card>
 		</div>
 	);
