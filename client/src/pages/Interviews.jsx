@@ -5,8 +5,9 @@ import { getTypeList } from "../redux/typeSlice";
 import { highlightAllCode } from "../utils/highlight";
 import styles from "../css/Interview.module.css";
 import PageHearder from "../components/PageHeader";
-import { Tree ,BackTop} from "antd";
+import { Tree, BackTop } from "antd";
 import { getInterviewById } from "../api/interview";
+import DOMPurify from "dompurify";
 
 function Interviews() {
 	const { interviewTitleList } = useSelector((state) => state.interview);
@@ -67,21 +68,21 @@ function Interviews() {
 	function clickHandle(interviewId) {
 		async function fetchData() {
 			const { data } = await getInterviewById(interviewId);
-            setInterviewInfo(data)
+			setInterviewInfo(data)
 		}
-        fetchData();
+		fetchData();
 	}
 
 	let interviewRightSide = null;
 	if (interviewInfo) {
-        interviewRightSide = (
-            <div className={styles.content}>
-                <h1 className={styles.interviewRightTitle}>{interviewInfo?.interviewTitle}</h1>
-                <div className={styles.contentContainer}>
-                    <div className={styles.markdown} dangerouslySetInnerHTML={{__html:interviewInfo?.interviewContent}}></div>
-                </div>
-            </div>
-        )
+		interviewRightSide = (
+			<div className={styles.content}>
+				<h1 className={styles.interviewRightTitle}>{interviewInfo?.interviewTitle}</h1>
+				<div className={styles.contentContainer}>
+					<div className={styles.markdown} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(interviewInfo?.interviewContent) }}></div>
+				</div>
+			</div>
+		)
 	} else {
 		interviewRightSide = (
 			<div
@@ -104,7 +105,7 @@ function Interviews() {
 				</div>
 				<div className={styles.rightSide}>{interviewRightSide}</div>
 			</div>
-            <BackTop/>
+			<BackTop />
 		</div>
 	);
 }

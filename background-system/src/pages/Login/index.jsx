@@ -4,6 +4,7 @@ import { Button, Checkbox, Form, Input, Row, Col, message } from 'antd';
 import ReactCanvasNest from 'react-canvas-nest';
 import AdminController from "@/services/admin";
 import styles from './index.module.css';
+import DOMPurify from "dompurify";
 
 function Login(props) {
 
@@ -153,7 +154,7 @@ function Login(props) {
                                 <div
                                     className={styles.captchaImg}
                                     onClick={captchaClickHandle}
-                                    dangerouslySetInnerHTML={{ __html: captcha }}
+                                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(captcha) }}
                                 ></div>
                             </Col>
                         </Row>

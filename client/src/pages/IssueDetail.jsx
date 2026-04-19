@@ -9,6 +9,7 @@ import ScoreRank from "../components/ScoreRank";
 import { getUserById } from "../api/user";
 import { formatDate } from "../utils/tool";
 import Discuss from "../components/Discuss";
+import DOMPurify from "dompurify";
 
 /**
  * 问答详情
@@ -54,12 +55,12 @@ function IssueDetail(props) {
 						<div className={styles.content}>
 							<div
 								dangerouslySetInnerHTML={{
-									__html: issueDetail?.issueContent,
+									__html: DOMPurify.sanitize(issueDetail?.issueContent),
 								}}></div>
 						</div>
 					</div>
 					{/* 左下方：评论 */}
-					<Discuss commentType={1} targetId={issueDetail?._id} issueInfo={issueDetail}/>
+					<Discuss commentType={1} targetId={issueDetail?._id} issueInfo={issueDetail} />
 				</div>
 				{/* 右边区域 */}
 				<div className={styles.rightSide}>

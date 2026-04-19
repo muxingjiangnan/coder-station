@@ -22,6 +22,7 @@ import { highlightAllCode } from "../utils/highlight";
 import { updataIssue } from "../api/issue";
 import { updataUserInfoAsync } from "../redux/userSlice";
 import styles from "../css/Discuss.module.css";
+import DOMPurify from "dompurify";
 
 function Discuss(props) {
 	const dispatch = useDispatch();
@@ -171,7 +172,7 @@ function Discuss(props) {
 							content={
 								<div
 									dangerouslySetInnerHTML={{
-										__html: item.commentContent,
+										__html: DOMPurify.sanitize(item.commentContent),
 									}}></div>
 							}
 							datetime={

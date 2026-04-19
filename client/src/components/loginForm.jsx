@@ -20,6 +20,7 @@ import {
 } from "../api/user";
 import { initUserInfo, changeLoginState } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
+import DOMPurify from "dompurify";
 
 function LoginForm(props) {
 	const [value, setValue] = useState(1);
@@ -241,7 +242,7 @@ function LoginForm(props) {
 								<div
 									className={styles.captchaImg}
 									onClick={captchaClickHandle}
-									dangerouslySetInnerHTML={{ __html: captcha }}></div>
+									dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(captcha) }}></div>
 							</Col>
 						</Row>
 					</Form.Item>
@@ -372,7 +373,7 @@ function LoginForm(props) {
 								<div
 									className={styles.captchaImg}
 									onClick={captchaClickHandle}
-									dangerouslySetInnerHTML={{ __html: captcha }}></div>
+									dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(captcha) }}></div>
 							</Col>
 						</Row>
 					</Form.Item>

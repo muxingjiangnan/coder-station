@@ -10,6 +10,7 @@ import { getBookById, updateBook } from "../api/book";
 import { editUser } from "../api/user";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/BookDetail.module.css";
+import DOMPurify from "dompurify";
 
 function BookDetail() {
 	const { id } = useParams(); // 获取可能传递过来的 id
@@ -103,7 +104,7 @@ function BookDetail() {
 				</div>
 				<div className={styles.rightSide}>
 					<h1 className={styles.title}>{bookInfo?.bookTitle}</h1>
-					<div dangerouslySetInnerHTML={{ __html: bookInfo?.bookIntro }}></div>
+					<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(bookInfo?.bookIntro) }}></div>
 				</div>
 			</div>
 			<div className={styles.comment}>
