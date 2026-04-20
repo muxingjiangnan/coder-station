@@ -27,7 +27,7 @@ function IssueDetail(props) {
 			setUserInfo(result.data);
 		}
 		fetchData();
-	}, []);
+	}, [id]);
 
 	useEffect(() => {
 		if (issueDetail) {

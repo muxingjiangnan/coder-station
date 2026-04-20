@@ -11,7 +11,7 @@ export async function getInitialState() {
     // 判断是否有有效的 token
     const token = localStorage.getItem('adminToken');
     if (token) {
-      const result = AdminController.getInfo();
+      const result = await AdminController.getInfo();
       if(result.data){
         // token 有效
         history.go(-1);

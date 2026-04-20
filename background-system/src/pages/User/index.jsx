@@ -115,9 +115,9 @@ function User(props) {
   /**
    * 删除对应的回调
    */
-  function deleteHandle(userInfo) {
+  async function deleteHandle(userInfo) {
     // 直接在这里发送请求，不需要通过状态仓库
-    UserController.deleteUser(userInfo._id);
+    await UserController.deleteUser(userInfo._id);
     // 删除之后需要强制刷新一个表格
     tableRef.current.reload();
     message.success('删除用户成功');

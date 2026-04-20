@@ -80,7 +80,7 @@ function Discuss(props) {
 	/**
 	 * 添加评论的回调函数
 	 */
-	function onSubmit() {
+	async function onSubmit() {
 		let newComment = null;
 		if (props.commentType === 1) {
 			// 问答评论
@@ -96,7 +96,7 @@ function Discuss(props) {
 			message.warning("评论内容不能为空！");
 			return;
 		}
-		addCommet({
+		await addCommet({
 			userId: userInfo._id,
 			typeId: props.issueInfo ? props.issueInfo.typeId : props.bookInfo.typeId,
 			commentContent: newComment,
@@ -109,10 +109,11 @@ function Discuss(props) {
 		editorRef.current?.getInstance().setHTML("<p><br></p>", true);
 
 		// 更新该问答的评论数
-		updataIssue(props.targetId, {
-			commentNumber: props.issueInfo
-				? ++props.issueInfo.commentNumber
-				: ++props.bookInfo.commentNumber,
+		const currentCommentNumber = props.issueInfo
+			? props.issueInfo.commentNumber
+			: props.bookInfo.commentNumber;
+		await updataIssue(props.targetId, {
+			commentNumber: currentCommentNumber + 1,
 		});
 
 		// 更新用户积分数据
@@ -190,8 +191,16 @@ function Discuss(props) {
 				<div className={styles.paginationContainer}>
 					<Pagination
 						showQuickJumper
-						defaultCurrent={1}
+						current={pageInfo.current}
+						pageSize={pageInfo.pageSize}
 						total={pageInfo.total}
+						onChange={(page, pageSize) => {
+							setPageInfo({
+								...pageInfo,
+								current: page,
+								pageSize: pageSize || pageInfo.pageSize,
+							});
+						}}
 					/>
 				</div>
 			) : (

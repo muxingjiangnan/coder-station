@@ -18,16 +18,21 @@ function App() {
 	// 加载跟组件的时候，尝试恢复登录状态
 	useEffect(() => {
 		async function fetchData() {
-			const result = await reLogin();
-			if (result.data) {
-				// token 有效
-				// 获取该 ID 对应的用户信息，存储到状态仓库
-				const { data } = await getUserById(result.data._id);
-				data.lastLoginDate = new Date().getTime().toString();
-				dispatch(initUserInfo(data));
-				dispatch(changeLoginState(true));
-			} else {
-				message.warning(result.msg);
+			try {
+				const result = await reLogin();
+				if (result.data) {
+					// token 有效
+					// 获取该 ID 对应的用户信息，存储到状态仓库
+					const { data } = await getUserById(result.data._id);
+					data.lastLoginDate = new Date().getTime().toString();
+					dispatch(initUserInfo(data));
+					dispatch(changeLoginState(true));
+				} else {
+					message.warning(result.msg);
+					localStorage.removeItem("userToken");
+				}
+			} catch {
+				// token 验证请求失败，不做处理
 				localStorage.removeItem("userToken");
 			}
 		}

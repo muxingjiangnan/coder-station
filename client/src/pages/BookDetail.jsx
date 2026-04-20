@@ -27,12 +27,12 @@ function BookDetail() {
 			const { data } = await getBookById(id);
 			setBookInfo(data);
 			// 该书籍的浏览数 +1
-			updateBook(data._id, {
-				scanNumber: ++data.scanNumber,
+			await updateBook(data._id, {
+				scanNumber: data.scanNumber + 1,
 			});
 		}
 		fetchData();
-	}, []);
+	}, [id]);
 
 	useEffect(() => {
 		if (bookInfo) {
@@ -63,7 +63,7 @@ function BookDetail() {
 					points: userInfo.points - bookInfo.requirePoints,
 				}),
 			);
-			window.open(`${bookInfo.downloadLink}`);
+			window.open(bookInfo.downloadLink, '_blank', 'noopener,noreferrer');
 			message.success("积分已扣除");
 		}
 		setIsModalOpen(false);

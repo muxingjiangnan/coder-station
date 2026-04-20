@@ -33,7 +33,7 @@ function LoginForm(props) {
 	});
 	// 注册表单状态
 	const [registerInfo, setRegisterInfo] = useState({
-		registerId: "",
+		loginId: "",
 		nickname: "",
 		captcha: "",
 	});
@@ -76,7 +76,7 @@ function LoginForm(props) {
 			remember: false,
 		});
 		setRegisterInfo({
-			registerId: "",
+			loginId: "",
 			nickname: "",
 			captcha: "",
 		});
@@ -180,7 +180,7 @@ function LoginForm(props) {
 								message: "请输入账号",
 							},
 							// 认证用户是否存在
-							{ vallidator: checkLoginIdIsExist },
+							{ validator: checkLoginIdIsExist },
 						]}>
 						<Input
 							placeholder="请输入账号"
