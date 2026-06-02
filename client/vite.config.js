@@ -11,6 +11,7 @@ export default defineConfig({
     alias: {
       'react-native': 'react-native-web',
       '@': pathResolve('src'),
+      '@toast-ui/editor': pathResolve('node_modules/.pnpm/@toast-ui+editor@3.2.2/node_modules/@toast-ui/editor'),
     },
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
   },

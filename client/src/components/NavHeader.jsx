@@ -52,6 +52,9 @@ function NavHeader(props) {
 					className="navgation">
 					视频教程
 				</a>
+				<NavLink to="/chat" className="navgation">
+					AI 助手
+				</NavLink>
 			</nav>
 			{/* 搜索框 */}
 			<div className="searchContainer">

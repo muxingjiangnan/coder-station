@@ -7,5 +7,6 @@ export default [
 	{ path: "/personal", needLogin: true },
 	{ path: "/addIssue", needLogin: true },
 	{ path: "/searchPage", needLogin: false },
+	{ path: "/chat", needLogin: true },
 	{ path: "/", needLogin: false },
 ];

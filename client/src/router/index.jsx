@@ -8,6 +8,7 @@ import SearchPage from "../pages/SearchPage";
 import BookDetail from "../pages/BookDetail";
 import Personal from "../pages/Personal";
 import NotFound from "../pages/NotFound";
+import { ChatPage } from "../pages/Chat";
 
 function RouterConfig() {
 	return (
@@ -20,6 +21,7 @@ function RouterConfig() {
 			<Route path="/interviews" element={<Interviews />} />
 			<Route path="/searchPage" element={<SearchPage />} />
 			<Route path="/personal" element={<Personal />} />
+			<Route path="/chat" element={<ChatPage />} />
 			<Route path="/" element={<Navigate replace to="/issues" />} />
 			<Route path="*" element={<NotFound />} />
 		</Routes>

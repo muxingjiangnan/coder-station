@@ -8,12 +8,15 @@ import { useState, useEffect } from "react";
 import { reLogin, getUserById } from "./api/user";
 import { useDispatch } from "react-redux";
 import { initUserInfo, changeLoginState } from "./redux/userSlice";
+import { useLocation } from "react-router-dom";
 
 const { Header, Footer, Content } = Layout;
 
 function App() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const dispatch = useDispatch();
+	const location = useLocation();
+	const isChatPage = location.pathname === "/chat";
 
 	// 加载跟组件的时候，尝试恢复登录状态
 	useEffect(() => {
@@ -57,9 +60,11 @@ function App() {
 			<Content>
 				<RouteBefore />
 			</Content>
-			<Footer className="footer">
-				<PageFooter />
-			</Footer>
+			{!isChatPage && (
+				<Footer className="footer">
+					<PageFooter />
+				</Footer>
+			)}
 			{/* 登录弹窗 */}
 			<LoginForm isShow={isModalOpen} closeModal={closeModal} />
 		</div>
